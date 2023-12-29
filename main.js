@@ -13,14 +13,16 @@ async function searchImages(){
   inputData = searchInput.value;
   const url = `https://api.unsplash.com/search/photos?page=${page}=${inputData}&client_id=${accessKey}`
 
-  const response = await fetch(url)
-  const data = await response.json()
+  const response = await fetch(url);
+  const data = await response.json();
 
-  const results = data.results
+  const results = data.results;
 
   if(page===1){
     resultContainer.innerHTML = ""
   }
+
+
   results.map((result) =>{
     const imgArea = document.createElement('div')
     imgArea.classList.add("search-result")
@@ -34,7 +36,7 @@ async function searchImages(){
 
     imgArea.appendChild(image)
     imgArea.appendChild(imageLink)
-    imgArea.appendChild(imageWrapper)  
+    imgArea.appendChild(imgArea)  
   })
 
   page++
