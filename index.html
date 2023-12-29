@@ -9,12 +9,33 @@
   </head>
   <body>
     <h1>Unsplash Image Search</h1>
-    <form>
+    <form action="">
       <input type="text" id="searchField" placeholder="Enter search term" />
       <button type="submit" id="searchBtn">Search</button>
     </form>
-    <div id="imageGallery"></div>
+    <div id="imageGallery">
+      <div class="search-result">
+        <img
+          src="https://images.unsplash.com/photo-1703701711673-453f0c0aed9b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHx8"
+          alt=""
+        />
+      </div>
 
+      <div class="search-result">
+        <img
+          src="https://images.unsplash.com/photo-1703774626005-9eb89bd30df4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8"
+          alt=""
+        />
+      </div>
+
+      <div class="search-result">
+        <img
+          src="https://images.unsplash.com/photo-1697665666330-7acf230fa830?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1Mnx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+        />
+      </div>
+    </div>
+    <button id="show-more-button">Show More</button>
     <script src="main.js"></script>
   </body>
 </html>

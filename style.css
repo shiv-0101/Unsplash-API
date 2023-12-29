@@ -42,4 +42,24 @@ body {
     background-color: #fff;
     color: #333;
   }
-  
+ #imageGallery{
+    padding: 20px 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .search-result{
+    margin: 0 20px;
+  }
+  .search-result img{
+    width: 300px;
+  }
+  #show-more-button{
+    background-color: blue;
+    font-size: 16px;
+    color: white;
+    padding: 10px 20px;
+    margin: 30px auto;
+    display: none;
+    cursor: pointer;
+  }
