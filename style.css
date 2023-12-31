@@ -42,17 +42,18 @@ body {
     background-color: #fff;
     color: #333;
   }
- #imageGallery{
+ .search-result{
     padding: 20px 30px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
   }
-  .search-result{
+  .search-results{
     margin: 0 20px;
   }
   .search-result img{
-    width: 300px;
+    width: 500px;
   }
   #show-more-button{
     background-color: blue;

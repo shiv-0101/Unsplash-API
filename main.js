@@ -1,57 +1,54 @@
-const searchInput = document.getElementById('searchField');
-const searchBtn = document.getElementById('searchBtn');
-const resultContainer = document.getElementById('imageGallery');
-const formEl = document.querySelector('form');
-const showMore = document.getElementById("show-more-button");
+const accessKey = "_lnQ1W62uVl0QmV4pjbGSZEbEy9tjhRHN5UNbmTKqek";
+const formEl = document.querySelector("form");
+const searchInputEl = document.getElementById("searchField");
+const searchResultsEl = document.getElementById("search-results");
+const showMoreButtonEl = document.getElementById("show-more-button");
 
-let inputData = ''
 let page = 1;
 
-const accessKey = '_lnQ1W62uVl0QmV4pjbGSZEbEy9tjhRHN5UNbmTKqek';
+formEl.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  page = 1;
+  await searchImages();
+});
 
-async function searchImages(){
-  inputData = searchInput.value;
-  const url = `https://api.unsplash.com/search/photos?page=${page}=${inputData}&client_id=${accessKey}`
+showMoreButtonEl.addEventListener("click", async () => {
+  await searchImages();
+});
 
-  const response = await fetch(url);
-  const data = await response.json();
+async function searchImages() {
+  const inputData = searchInputEl.value.trim();
+  if (inputData) {
+    const url = `https://api.unsplash.com/search/photos?page=${page}&query=${inputData}&client_id=${accessKey}`;
 
-  const results = data.results;
+    const response = await fetch(url);
+    const data = await response.json();
 
-  if(page===1){
-    resultContainer.innerHTML = ""
-  }
+    if (page === 1) {
+      searchResultsEl.innerHTML = "";
+    }
 
+    // for looping through each image result and creating html elements to display them
+    data.results.forEach((result) => {
+      const imageArea = document.createElement("div");
+      imageArea.classList.add("search-result");
 
-  results.map((result) =>{
-    const imgArea = document.createElement('div')
-    imgArea.classList.add("search-result")
-    const image = document.createElement('img')
-    image.src = result.urls.small
-    image.alt = result.alt_description
-    const imageLink = document.createElement('a')
-    imageLink.href = result.links.html
-    imageLink.target = "_blank"
-    imageLink.textContent = result.alt_description
+      const image = document.createElement("img");
+      image.src = result.urls.small;
+      image.alt = result.alt_description;
 
-    imgArea.appendChild(image)
-    imgArea.appendChild(imageLink)
-    imgArea.appendChild(imgArea)  
-  })
+      const imageLink = document.createElement("a");
+      imageLink.href = result.links.html;
+      imageLink.target = "_blank"; //to open link (when clicked) in new tab.
+      imageLink.textContent = result.alt_description;
 
-  page++
-  if(page > 1){
-    showMore.style.display = "block"
+      //img and link added as child elements insinde imageArea, and imageArea then appended (a child element) inside searchResultsEl to disply.
+      imageArea.appendChild(image);
+      imageArea.appendChild(imageLink);
+      searchResultsEl.appendChild(imageArea);
+    });
+
+    page++;
+    showMoreButtonEl.style.display = "block";
   }
 }
-
-formEl.addEventListener("submit", (event) =>{
-  event.preventDefault()
-  page = 1
-  searchImages()
-})
-
-showMore.addEventListener("click", () => {
-  searchImages()
-})
-
